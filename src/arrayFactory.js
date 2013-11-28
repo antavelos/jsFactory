@@ -1,4 +1,14 @@
 
+function ArrayFactoryException(message){
+	this.message = message;
+	this.toString = function(){
+		return message;
+	};
+}
+
+/**
+ * Returns the array with its unique elements.
+ */
 if (typeof Array.prototype.unique !== 'function') {
 	Array.prototype.unique = function() {
 		uniqueArray = [];
@@ -12,6 +22,10 @@ if (typeof Array.prototype.unique !== 'function') {
 	}
 }
 
+/**
+ * Returns a dict with pairs of the unique values along with their 
+ * frequencies.
+ */
 if (typeof Array.prototype.frequencies !== 'function') {
 	Array.prototype.frequencies = function() {
 		var frequencyArray = {};
@@ -28,6 +42,9 @@ if (typeof Array.prototype.frequencies !== 'function') {
 	}
 }
 
+/**
+ * Returns the array shuffled.
+ */
 if (typeof Array.prototype.shuffle !== 'function') {
 	Array.prototype.shuffle = function() {
 		for (var i = 0; i < this.length; i++) {
@@ -39,6 +56,38 @@ if (typeof Array.prototype.shuffle !== 'function') {
 			this[rand] = temp;
 		}
 		return this;
+	}
+}
+
+if (typeof Array.prototype.zip !== 'function') {
+	Array.prototype.zip = function(array) {
+		if (!(array instanceof Array)) {
+			throw new ArrayFactoryException('Function zip get only arrays as arguments.');
+		}
+		else {
+			if (array.length == 0) {
+				return this;
+			}
+			if (this.length == 0) {
+				return array 
+			}
+
+			var zipped = new Array(),
+				pair = this.length >= array.length ?
+					   length = this.length:
+					   length = array.length;
+
+			;
+			for (var i = 0; i < length; i++) {
+				if (this[i]) {
+					zipped.push(this[i])
+				}
+				if (array[i]) {
+					zipped.push(array[i]);	
+				}
+			}
+			return zipped//.concat(pair.second.slice(pair.first.length));
+		}
 	}
 }
 
