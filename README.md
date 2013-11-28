@@ -1,0 +1,4 @@
+jsFactory
+=========
+
+JavaScript objects' extensions 
